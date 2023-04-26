@@ -6,22 +6,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class UserDTO {
 
     private Integer id;
+    @NotBlank
     private String nombre;
+    @NotBlank
     private String apellido;
+    @Positive
     private Integer edad;
+    @Email
     private String email;
+    @NotBlank
     private String password;
+    @Positive
     private Integer telefono;
     private Date created;
     private Date modified;
-    private Date last_login;
-    private boolean isactive;
 
 
     public static UserDTO toDTO(User entity){   // Metodo estático para copiar entidad al DTO. Recibe User entity y devuelve UserDTO
@@ -33,10 +40,6 @@ public class UserDTO {
         dto.setEmail(entity.getEmail());
         dto.setPassword(entity.getPassword());
         dto.setTelefono(entity.getTelefono());
-        dto.setCreated(entity.getCreated());
-        dto.setModified(entity.getModified());
-        dto.setLast_login(entity.getLast_login());
-        dto.setIsactive(entity.isIsactive());
         return dto;                             // Devuelvo el objeto dto
     }
 
@@ -51,8 +54,6 @@ public class UserDTO {
         entity.setTelefono(dto.getTelefono());
         entity.setCreated(dto.getCreated());
         entity.setModified(dto.getModified());
-        entity.setLast_login(dto.getLast_login());
-        entity.setIsactive(dto.isIsactive());
         return entity;
     }
 

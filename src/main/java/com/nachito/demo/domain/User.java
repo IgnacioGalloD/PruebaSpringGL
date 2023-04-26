@@ -1,6 +1,11 @@
 package com.nachito.demo.domain;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -34,8 +39,12 @@ public class User {
     private List<Telefono> tel = new ArrayList<Telefono>();
  */
     @Column
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
     @Column
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date modified;
     @Column
     private Date last_login;
